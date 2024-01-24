@@ -10,7 +10,7 @@
 
 一张仅主机供控制节点和计算节点访问(后面要用)
 
-![image-20231221141021059](C:\Users\L\AppData\Roaming\Typora\typora-user-images\image-20231221141021059.png)
+![PixPin_2023-12-21_14-09-28](./OpenStack.assets/PixPin_2023-12-21_14-09-28.png)
 
 固定ip 两台节点固定nat网卡的ip
 
@@ -26,11 +26,11 @@ ONBOOT=yes
 
 系统盘和外加的一块盘(第二块盘弄22gb,图片有误,后面要用)
 
-![image-20231221141454398](C:\Users\L\AppData\Roaming\Typora\typora-user-images\image-20231221141454398.png)
+![PixPin_2023-12-21_14-13-48](./OpenStack.assets/PixPin_2023-12-21_14-13-48-1706085376876-2.png)
 
 两块镜像(centos7和OpenStack)
 
-![image-20231221141841532](C:\Users\L\AppData\Roaming\Typora\typora-user-images\image-20231221141841532.png)
+![PixPin_2023-12-21_14-17-12](./OpenStack.assets/PixPin_2023-12-21_14-17-12-1706085382680-4.png)
 
 关闭防火墙和selinux
 
@@ -44,9 +44,9 @@ systemctl disable firewalld
 selinux:
 
 ```bash
-# 关闭SELinux
-sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
-echo "SELinux已关闭，请重启系统使其生效"
+# vi /etc/selinux/config
+修改 SELINUX=permissive
+# setenforce 0 临时关闭Selinux
 reboot
 ```
 
@@ -913,23 +913,23 @@ iaas-install-heat.sh
 
 启用 hashmap 评级 模块
 
-![image-20231222095823228](C:\Users\L\AppData\Roaming\Typora\typora-user-images\image-20231222095823228.png)
+![Snipaste_2024-01-24_16-29-04](./OpenStack.assets/Snipaste_2024-01-24_16-29-04-1706085418785-6.png)
 
 创建服务匹配规则 volume.size
 
-![image-20231222100110532](C:\Users\L\AppData\Roaming\Typora\typora-user-images\image-20231222100110532.png)
+![Snipaste_2024-01-24_16-29-17](./OpenStack.assets/Snipaste_2024-01-24_16-29-17-1706085420906-8.png)
 
 创建 volume_thresholds 组
 
-![image-20231222100253316](C:\Users\L\AppData\Roaming\Typora\typora-user-images\image-20231222100253316.png)
+![Snipaste_2024-01-24_16-29-24](./OpenStack.assets/Snipaste_2024-01-24_16-29-24-1706085425119-10.png)
 
 设置每 GB 的价格 为 0.01。
 
-![image-20231222192012820](C:\Users\L\AppData\Roaming\Typora\typora-user-images\image-20231222192012820.png)
+![Snipaste_2024-01-24_16-29-35](./OpenStack.assets/Snipaste_2024-01-24_16-29-35-1706085427322-12.png)
 
 在组 volume_thresholds 中创建阈值，设置若超 过 50GB 的阈值，应用 2%的折扣（0.98）
 
-![image-20231222191547362](C:\Users\L\AppData\Roaming\Typora\typora-user-images\image-20231222191547362.png)
+![Snipaste_2024-01-24_16-29-42](./OpenStack.assets/Snipaste_2024-01-24_16-29-42-1706085430237-14.png)
 
 ### 19.修改文件句柄数
 
@@ -1042,19 +1042,19 @@ net.ipv4.tcp_syncookies = 1
 
 m1.tiny实例类型，点击下一步；选择net为虚拟机的网络；这样点击“创建实例”按钮就可以完成虚拟机创建。创建步骤如图4、图5、图6、图7所示。
 
-​                  ![image-20231221233423218](C:\Users\L\AppData\Roaming\Typora\typora-user-images\image-20231221233423218.png)             
+![Snipaste_2024-01-24_16-31-59](./OpenStack.assets/Snipaste_2024-01-24_16-31-59-1706085435485-16.png)
 
 图4 虚拟机创建1
 
- ![image-20231221233429850](C:\Users\L\AppData\Roaming\Typora\typora-user-images\image-20231221233429850.png)
+![Snipaste_2024-01-24_16-32-04](./OpenStack.assets/Snipaste_2024-01-24_16-32-04-1706085451927-24.png)
 
 图5 虚拟机创建2
 
- ![image-20231221233435458](C:\Users\L\AppData\Roaming\Typora\typora-user-images\image-20231221233435458.png)
+![Snipaste_2024-01-24_16-32-09](./OpenStack.assets/Snipaste_2024-01-24_16-32-09-1706085439320-18.png)
 
 图6 虚拟机创建3
 
- ![image-20231221233440312](C:\Users\L\AppData\Roaming\Typora\typora-user-images\image-20231221233440312.png)
+![Snipaste_2024-01-24_16-32-18](./OpenStack.assets/Snipaste_2024-01-24_16-32-18-1706085442181-20.png)
 
 图7 虚拟机创建4
 
@@ -1062,7 +1062,7 @@ m1.tiny实例类型，点击下一步；选择net为虚拟机的网络；这样�
 
 等虚拟机创建完成后，可以看到虚拟机状态为“运行”，如图8所示。只要求创建cirros的云主机不报错，不要求创建后的cirros云主机可以使用CRT连接。
 
-![image-20231221233547915](C:\Users\L\AppData\Roaming\Typora\typora-user-images\image-20231221233547915.png)
+![Snipaste_2024-01-24_16-32-26](./OpenStack.assets/Snipaste_2024-01-24_16-32-26-1706085445431-22.png)
 
  图8 cirros虚拟机运行
 
